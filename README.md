@@ -1,0 +1,2 @@
+# genserver_fizzbuzz
+FizzBuzzをGenserverで実装したmixのプロジェクト
