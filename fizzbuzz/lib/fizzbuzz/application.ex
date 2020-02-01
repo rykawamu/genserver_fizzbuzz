@@ -9,6 +9,7 @@ defmodule Fizzbuzz.Application do
     children = [
       # Starts a worker by calling: Fizzbuzz.Worker.start_link(arg)
       # {Fizzbuzz.Worker, arg}
+      {Fizzbuzz.Worker, 1}      ### <- ここを追記
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
