@@ -42,18 +42,12 @@ defmodule Fizzbuzz.Worker do
     GenServer.cast __MODULE__, {:change_number, change_num}
   end
 
-  defp schedule_work do
-    # In 5 Seconds
-    Process.send_after(self(), :work, 5 * 1000)
-  end
-
   ###############
   ### 以降、GenServerの実装
   ###############
 
   def init(state) do
     IO.puts("init/1  call")
-    schedule_work()
     {:ok, state}
   end
 
@@ -74,15 +68,6 @@ defmodule Fizzbuzz.Worker do
 
   def handle_cast({:change_number, change_num }, _current_num) do
     { :noreply, change_num}
-  end
-
-  def handle_info(:work, current_num) do
-    {n, v} = current_num |> fizzbuzz()
-    IO.puts("schedule_work : #{n} : #{v}")
-    # Reschedule once more
-    schedule_work()
-
-    {:noreply, current_num + 1}
   end
 
 end
